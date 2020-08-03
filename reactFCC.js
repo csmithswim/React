@@ -156,6 +156,55 @@ class TypesOfFood extends React.Component {
   }
 };
 
+//Here is a typical React class declaration using extends, constructor/super, render and then an API call to append to DOM
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+      <h1>My First React Component!
+      </h1>
+      </div>      
+    )
+  }
+
+}
+
+ReactDOM.render(<MyComponent />, document.getElementById('challenge-node'))
+
+//React parent components can pass properties to child components using the following syntax
+const CurrentDate = (props) => {
+  return (
+    <div>
+      { /* change code below this line */ }
+      <p>{props.date}</p>
+      { /* change code above this line */ }
+    </div>
+  );
+};
+
+class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>What date is it?</h3>
+        { /* change code below this line */ }
+        <CurrentDate date = {Date()}/>
+        { /* change code above this line */ }
+      </div>
+    );
+  }
+};
+
+
+
+
 
 
 
