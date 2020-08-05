@@ -431,6 +431,125 @@ this.handleClick = this.handleClick.bind(this)
   }
 };
 
+//You can monitor the state of your components by using functions since the state is async, you can view props and methods by passing setState a function
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: false
+    };
+    // change code below this line
+this.toggleVisibility = this.toggleVisibility.bind(this)
+    // change code above this line
+  }
+  // change code below this line
+toggleVisibility(){
+      this.setState(state => {
+      if (state.visibility === true) {
+         return { visibility: false };
+       } else {
+         return { visibility: true };
+      }
+    });
+  }
+  // change code above this line
+  render() {
+    if (this.state.visibility) {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>Now you see me!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+        </div>
+      );
+    }
+  }
+};
+
+//You can pass props and methods to the state using a function to setState, this is important because your state is async and you want your state to be updated async
+
+class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+    // change code below this line
+this.increment = this.increment.bind(this)
+this.decrement = this.decrement.bind(this)
+this.reset = this.reset.bind(this)
+    // change code above this line
+  }
+  // change code below this line
+
+//There should be three methods that setState
+
+increment(){
+  this.setState(state => ({
+    count: state.count + 1
+  }));
+}
+decrement(){
+  this.setState(state => ({
+    count: state.count - 1
+  }));
+}
+reset() {
+  this.setState(state => ({
+    count: 0
+  }));
+}
+  // change code above this line
+  render() {
+    return (
+      <div>
+        <button className='inc' onClick={this.increment}>Increment!</button>
+        <button className='dec' onClick={this.decrement}>Decrement!</button>
+        <button className='reset' onClick={this.reset}>Reset</button>
+        <h1>Current Count: {this.state.count}</h1>
+      </div>
+    );
+  }
+};
+
+//You can use an input form to pass stateless data to the state and then have it rendered to the dom using methods defined within the component and passed to the state
+class ControlledInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    // change code below this line
+this.handleChange = this.handleChange.bind(this)
+    // change code above this line
+  }
+  // change code below this line
+handleChange(event){
+  this.setState({
+input: event.target.value
+
+  });
+}
+  // change code above this line
+  render() {
+    return (
+      <div>
+        { /* change code below this line */}
+<input value = {this.state.input} onChange = {this.handleChange.bind(this)}/>
+        { /* change code above this line */}
+        <h4>Controlled Input:</h4>
+        <p>{this.state.input}</p>
+      </div>
+    );
+  }
+};
+
 
 
 
