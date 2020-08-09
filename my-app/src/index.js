@@ -2,37 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-class Square extends React.Component {
-    constructor(props) {          /*Method that creates/initializes an object created with a class, limited to one per class, can  */
-      super(props);                 /* super keyword to call the constructor of the super class, a subclass of the parent */
-      this.state = {      
-        value: null,
-    };
-  }
-    render() {
+function Square(props) {
       return (
         <button 
           className="square" 
-          onClick={() => this.setState({value: 'X'})}         
+          onClick={props.onClick()}         
         >                     
-          {this.state.value}
+          {props.value}
         </button>
       );
-    }
-    
-  }
-  
+}   
+
   class Board extends React.Component {  
-    constructor(props) {
-      super(props);
-      this.state = {
+    constructor(props) {        /*Method that creates/initializes an object created with a class, limited to one per class, can  */
+      super(props);             /* super keyword to call the constructor of the super class, a subclass of the parent */
+      this.state = { 
         squares: Array(9).fill(null),    /* Setting Board's initial state to contain an array of 9 nulls corresponding to 9 squares */
       };
     }
 
-    renderSquare(i) {
-      return <Square value={this.state.squares[i]} />; /*Passing a prop from the parent Board component to the Square component */
+    handleClick(i) {
+      const squares = this.state.squares.slice(); //Creating a copy of the squares array to modify, immutability is ipmortant!
+      squares[i] = 'X';
+      this.setState({squares: squares});
     }
+
+    renderSquare(i) {
+      return (
+      <Square 
+      value={this.state.squares[i]}          /*Passing a prop from the parent Board component to the Square component */
+      onClick={() => this.handleClick(i)}
+      />       
+      );
+  }
   
     render() {
       const status = 'Next player: X';
