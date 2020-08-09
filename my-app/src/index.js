@@ -21,6 +21,10 @@ class Board extends React.Component {
 
   handleClick(i) {
     const squares = this.state.squares.slice(); //Creating a copy of the squares array to modify, immutability is ipmortant!
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+      
+    }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
       squares: squares,
