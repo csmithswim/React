@@ -959,11 +959,20 @@ const inputStyle = {
   margin: 5
 }
 
+const inputStyle = {
+  width: 235,
+  margin: 5
+}
+
+//You can use ternary operators to string together conditions to return JSX/components to the DOM, in this example we return one button if the input is an empty string, and then return two different buttons based upon a condition testing their age using a ternary operator
 class CheckUserAge extends React.Component {
   constructor(props) {
     super(props);
     // change code below this line
-
+this.state = {
+  userAge: '',
+  input: ''
+};
     // change code above this line
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -993,11 +1002,17 @@ class CheckUserAge extends React.Component {
           onChange={this.handleChange} /><br />
         {
           /* change code here */
+      this.state.userAge === ''
+       ? buttonOne 
+       : this.state.userAge >= 18 
+       ? buttonTwo 
+       : buttonThree 
         }
       </div>
     );
   }
 };
+
 //
 class Results extends React.Component {
   constructor(props) {
