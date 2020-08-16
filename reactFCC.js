@@ -190,7 +190,7 @@ class Calendar extends React.Component {
   constructor(props) {
     super(props);
   }
-  render() {
+  render() {  
     return (
       <div>
         <h3>What date is it?</h3>
@@ -1013,7 +1013,7 @@ this.state = {
   }
 };
 
-//
+//In this problem we first define an expression that returns true or false 50% of the time using Math.random, then pass that value to a prop in the child component and then render a h1 element with different phrases based upon that property, we also adjust the counter property accessing the state
 class Results extends React.Component {
   constructor(props) {
     super(props);
@@ -1023,7 +1023,7 @@ class Results extends React.Component {
       <h1>
       {
         /* change code here */
-      }dfdfdfdf
+      }dfdfdfdf 
       </h1>
     )
   };
@@ -1056,6 +1056,41 @@ class GameOfChance extends React.Component {
   }
 };
 
+//You can use conditionals to set styles in the render method like so
+class GateKeeper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({ input: event.target.value })
+  }
+  render() {
+    let inputStyle = {
+      border: '1px solid black'
+    };
+    // change code below this line
+if (this.state.input.length > 15){
+
+inputStyle.border = '3px solid red'
+
+}
+    // change code above this line
+    return (
+      <div>
+        <h3>Don't Type Too Much:</h3>
+        <input
+          type="text"
+          style={inputStyle}
+          value={this.state.input}
+          onChange={this.handleChange} />
+      </div>
+    );
+  }
+};
 
   
 
